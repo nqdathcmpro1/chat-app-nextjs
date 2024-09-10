@@ -7,10 +7,13 @@ import {
   UsergroupAddOutlined,
 } from "@ant-design/icons";
 import React, { ChangeEvent, ReactNode, useState } from "react";
+import { Button, Flex, Input, Layout, Space, Tooltip } from "antd";
 
 type Props = {
   children: ReactNode;
 };
+
+const { Content } = Layout;
 
 const MainList = ({ children }: Props) => {
   const [searchValue, setSearchValue] = useState("");
@@ -24,40 +27,55 @@ const MainList = ({ children }: Props) => {
   };
 
   return (
-    <div className="h-screen w-1/4 bg-white border-r-2 border-slate-300">
-      <div className="w-full h-[10%] flex items-center gap-1 p-4">
-        <div className="has-[:focus]:bg-white has-[:focus]:border border-blue-500 w-3/4 h-full rounded bg-slate-200 flex items-center justify-between p-2 gap-1">
-          <button type="submit" className="w-1/12 outline-none">
-            <SearchOutlined className="" />
-          </button>
-          <input
-            value={searchValue}
-            onChange={handleChangeSearch}
-            id="search"
-            name="search"
-            placeholder="Find..."
-            className={`${
-              searchValue !== "" ? "w-10/12" : "w-11/12"
-            } focus:outline-none peer-focus:bg-white bg-transparent`}
+    <Content className="h-screen lg:min-w-96 min-w-full bg-white border-r-2 border-slate-300">
+      <Flex align="center" gap="small" className="w-full h-[10%] p-4">
+        <Flex
+          gap={1}
+          align="center"
+          className="has-[:focus]:bg-white has-[:focus]:border border-blue-500 w-full h-full rounded bg-slate-200 p-2"
+        >
+          <Button
+            className="w-1/12"
+            type="text"
+            size="small"
+            icon={<SearchOutlined />}
           />
-          <button
-            onClick={handleDeleteSearch}
-            className={`${searchValue === "" && "hidden"} w-1/12`}
-          >
-            <CloseCircleFilled />
-          </button>
-        </div>
-        <div className="w-1/4 flex items-center justify-evenly">
-          <button className="p-2 rounded hover:bg-slate-200">
-            <UserAddOutlined className="font-md" />
-          </button>
-          <button className="p-2 rounded hover:bg-slate-200">
-            <UsergroupAddOutlined className="font-md" />
-          </button>
-        </div>
-      </div>
-      <div className="w-full h-[90%]">{children}</div>
-    </div>
+          <Flex align="center" className="w-11/12">
+            <Input
+              value={searchValue}
+              onChange={handleChangeSearch}
+              id="search"
+              name="search"
+              variant="borderless"
+              placeholder="Find..."
+              className={`${
+                searchValue !== "" ? "w-11/12" : "w-full"
+              } peer-focus:bg-white`}
+            />
+            <Button
+              type="text"
+              onClick={handleDeleteSearch}
+              icon={<CloseCircleFilled />}
+              className={`${searchValue === "" && "hidden"} w-1/12`}
+            />
+          </Flex>
+        </Flex>
+        
+          <Tooltip title="Thêm bạn bè">
+            <Button
+              type="text"
+              icon={<UserAddOutlined className="font-md" />}
+            />
+          </Tooltip>
+          <Tooltip title="Tạo nhóm mới">
+            <Button
+              type="text"
+              icon={<UsergroupAddOutlined className="font-md" />}
+            />
+          </Tooltip>
+      </Flex>
+      <Content className="w-full h-[90%]">{children}</Content>
+    </Content>
   );
 };
 

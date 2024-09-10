@@ -1,21 +1,28 @@
 "use client";
 
 import React, { useState } from "react";
-import { Avatar, Layout } from "antd";
+import { Avatar, Button, Flex, Layout, Tooltip, Typography } from "antd";
 import MainList from "@/app/components/main/main.list";
 import { CheckSquareOutlined } from "@ant-design/icons";
 import { fetchDefaultAvatar } from "@/app/utils/fetch/fetch.default";
 import MainChatBox from "@/app/components/chat/main.chatbox";
+import MainNoChat from "@/app/components/main/main.nochat";
+
+const { Content } = Layout;
 
 const Home = () => {
   const [isChooseAll, setIsChooseAll] = useState(true);
 
   return (
-    <div className="w-full max-h-screen bg-slate-200 flex">
+    <Flex className="w-full max-h-screen bg-gray-200">
       <MainList>
         {/* Header Tab */}
-        <div className="h-8 border-b-2 flex items-center justify-between px-4">
-          <div className="w-2/3 flex gap-2">
+        <Flex
+          align="center"
+          justify="space-between"
+          className="h-8 border-b-2 px-4"
+        >
+          <Flex gap="middle" className="w-2/3">
             <div
               className={`${
                 isChooseAll ? "text-sky-500" : "text-slate-500"
@@ -30,54 +37,59 @@ const Home = () => {
             >
               Chưa xem
             </div>
-          </div>
-
-          <button
-            title="Đánh dấu đã đọc"
-            className="p-1 aspect-square rounded-full hover:bg-slate-200"
-          >
-            <CheckSquareOutlined />
-          </button>
-        </div>
+          </Flex>
+          <Tooltip title="Đánh dấu đã đọc">
+            <Button type="text" shape="circle" icon={<CheckSquareOutlined />} />
+          </Tooltip>
+        </Flex>
         {/* End Header Tab */}
 
         {/* Chat List */}
-        <div className="w-full max-h-full overflow-y-auto flex flex-col">
-          <div className="cursor-pointer w-full h-20 flex items-center justify-between p-3">
+        <Flex vertical className="w-full max-h-full overflow-y-auto">
+          <Flex
+            align="center"
+            gap="middle"
+            className="cursor-pointer w-full h-20 p-3"
+          >
             <Avatar
               alt="avatar"
               src={fetchDefaultAvatar()}
               size={50}
-              className="border bg-white border-slate-300"
+              className="border bg-white border-slate-300 w-1/4"
             />
-            <div className="w-64 flex flex-col gap-1">
-              <div className="font-bold truncate">Đạt</div>
-              <div className="truncate">
+            <Flex vertical gap="small" className="w-3/4">
+              <Typography className="font-bold truncate">Đạt</Typography>
+              <Typography className="truncate">
                 Bạn: dadasdasdsafsdghjdfhjgsdfkjgsdasdasdasdasdas
-              </div>
-            </div>
-          </div>
+              </Typography>
+            </Flex>
+          </Flex>
 
-          <div className="w-full h-20 flex items-center justify-between p-3 bg-blue-100">
+          <Flex
+            align="center"
+            gap="middle"
+            className="w-full h-20 p-3 bg-blue-100"
+          >
             <Avatar
               alt="avatar"
               src={fetchDefaultAvatar()}
               size={50}
-              className="border bg-white border-slate-300"
+              className="w-1/4 border bg-white border-slate-300"
             />
-            <div className="w-64 flex flex-col gap-1">
-              <div className="font-bold truncate">Đạt</div>
-              <div className="truncate">
+            <Flex vertical gap="small" className="w-3/4">
+              <Typography className="font-bold truncate">Đạt</Typography>
+              <Typography className="truncate">
                 Bạn: dadasdasdsafsdghjdfhjgsdfkjgsdasdasdasdasdas
-              </div>
-            </div>
-          </div>
-        </div>
+              </Typography>
+            </Flex>
+          </Flex>
+        </Flex>
         {/* End Chat List */}
       </MainList>
 
       <MainChatBox />
-    </div>
+      {/* <MainNoChat /> */}
+    </Flex>
   );
 };
 

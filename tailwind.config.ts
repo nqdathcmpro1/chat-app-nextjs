@@ -8,11 +8,27 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        "zalo-blue": "#0091ff",
       },
+      keyframes: {
+        slideInRight: {
+          "0%": { transform: "translate(50%)"},
+          "100%": { transform: "translate(0)"}
+        },
+        slideOutRight: {
+          "0%": { transform: "translate(0)" },
+          "100%": { transform: "translate(50%)"}
+        },
+        slideInLeft: {
+          "0%": { transform: "translate(-100%)"},
+          "100%": { transform: "translate(0)"}
+        },
+        slideOutLeft: {
+          "0%": { transform: "translate(0)" },
+          "100%": { transform: "translate(-50%)"}
+        }
+      }
     },
   },
   plugins: [],

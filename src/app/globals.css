@@ -31,3 +31,19 @@ body {
     text-wrap: balance;
   }
 }
+
+.ant-modal-content {
+  padding: 0 !important;
+}
+
+.ant-modal-header {
+  padding: 0 !important;
+}
+
+.ant-modal-body {
+  padding: 0 !important;
+}
+
+.ant-modal-footer {
+  padding: 0 !important;
+}

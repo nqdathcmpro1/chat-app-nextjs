@@ -1,5 +1,4 @@
-import Header from "@/app/components/main/main.header";
-import MainList from "@/app/components/main/main.list";
+import Header from "@/app/components/main/header/main.header";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
